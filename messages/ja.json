@@ -1,0 +1,192 @@
+{
+  "common": {
+    "add": "追加",
+    "delete": "削除",
+    "edit": "編集",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "clear": "クリア",
+    "search": "検索",
+    "filter": "フィルタ",
+    "new": "新規",
+    "export": "エクスポート",
+    "import": "インポート",
+    "yes": "はい",
+    "no": "いいえ",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "warning": "警告"
+  },
+  "header": {
+    "title": "Team Topologies Designer",
+    "export": "エクスポート",
+    "exportJson": "JSON形式でエクスポート",
+    "exportYaml": "YAML形式でエクスポート",
+    "exportCsv": "CSV (ZIP) でエクスポート",
+    "import": "インポート",
+    "importJson": "JSON/YAMLからインポート",
+    "importCsv": "CSV (ZIP) からインポート",
+    "newTopology": "新規トポロジー"
+  },
+  "sidebar": {
+    "teamTypes": "チームタイプ",
+    "searchAndFilter": "検索 & フィルタ",
+    "teams": "チーム",
+    "teamsCount": "{count} チーム",
+    "dragToCanvas": "キャンバスにドラッグして作成",
+    "clearFilters": "フィルタをクリア",
+    "searchPlaceholder": "チームを検索...",
+    "filterByType": "タイプ",
+    "filterByTag": "タグ",
+    "selectTag": "タグを選択..."
+  },
+  "teamTypes": {
+    "streamAligned": "ストリームアラインドチーム",
+    "enabling": "イネーブリングチーム",
+    "complicatedSubsystem": "複雑なサブシステムチーム",
+    "platform": "プラットフォームチーム",
+    "streamAlignedDesc": "ビジネスドメインの特定の流れに沿って作業するチーム",
+    "enablingDesc": "ストリームアラインドチームが障害を克服し、既存能力のギャップを発見するのを支援",
+    "complicatedSubsystemDesc": "高度な数学的計算や技術的専門知識が必要な領域を担当",
+    "platformDesc": "魅力的な内部プロダクトを提供する他のチームのグループ"
+  },
+  "interactionModes": {
+    "collaboration": "コラボレーション",
+    "xAsAService": "X-as-a-Service",
+    "facilitating": "ファシリテーション",
+    "collaborationDesc": "2つのチームが一定期間協力して、新しいパターン、アプローチ、制限を発見",
+    "xAsAServiceDesc": "あるチームが別のチームから提供されるもの（API、ツール、完全なソフトウェア製品など）を利用",
+    "facilitatingDesc": "あるチーム（通常はイネーブリングチーム）が別のチームの学習や新しいアプローチの採用を支援"
+  },
+  "properties": {
+    "tabs": {
+      "basicInfo": "基本情報",
+      "teamApi": "Team API",
+      "cognitiveLoad": "認知負荷"
+    },
+    "basicInfo": {
+      "teamName": "チーム名",
+      "teamType": "チームタイプ",
+      "description": "説明",
+      "memberCount": "メンバー数",
+      "techStack": "技術スタック",
+      "techStackPlaceholder": "React, Node.js, PostgreSQL",
+      "techStackHelp": "カンマ区切りのリスト",
+      "responsibilities": "責任範囲",
+      "responsibilitiesPlaceholder": "ユーザー認証, 決済処理",
+      "responsibilitiesHelp": "1行に1項目",
+      "tags": "タグ",
+      "tagsPlaceholder": "frontend, backend, api",
+      "tagsHelp": "カンマ区切りのリスト"
+    },
+    "teamApi": {
+      "templateReference": "Team Topologiesの公式{link}に基づいています",
+      "templateLinkText": "Team APIテンプレート",
+      "tabs": {
+        "basic": "基本情報",
+        "work": "現在の作業",
+        "interactions": "インタラクション"
+      },
+      "basic": {
+        "focus": "チームフォーカス",
+        "focusPlaceholder": "例: 決済処理、ユーザー認証",
+        "partOfPlatform": "プラットフォームの一部ですか？",
+        "partOfPlatformYes": "はい、このチームはプラットフォームの一部です",
+        "platformDetails": "プラットフォームの詳細...",
+        "providesService": "他チームへのサービス提供はありますか？",
+        "providesServiceYes": "はい、他チームにサービスを提供しています",
+        "serviceDetails": "サービスの詳細...",
+        "serviceLevelExpectations": "サービスレベル期待値",
+        "slaPlaceholder": "例: 稼働率99.9%、レスポンス時間200ms未満",
+        "softwareOwned": "管理するソフトウェア",
+        "softwareOwnedPlaceholder": "payment-service, billing-api, user-db",
+        "softwareOwnedHelp": "カンマ区切りのリスト",
+        "versioningApproaches": "バージョニング手法",
+        "versioningPlaceholder": "例: セマンティックバージョニング、Git flow",
+        "wikiSearchTerms": "Wiki検索キーワード",
+        "wikiSearchTermsPlaceholder": "決済, 請求, チェックアウト",
+        "wikiSearchTermsHelp": "Wikiでチーム情報を検索する際のキーワード",
+        "chatChannels": "チャットツールチャンネル",
+        "chatChannelsPlaceholder": "#team-payments, #platform-team, #ops-alerts",
+        "chatChannelsHelp": "カンマ区切りのチャンネル名",
+        "dailySyncTime": "デイリーシンクミーティング時刻",
+        "dailySyncTimePlaceholder": "例: 10:00 UTC, 9:30 JST"
+      },
+      "work": {
+        "description": "現在取り組んでいること",
+        "servicesAndSystems": "サービスとシステム",
+        "servicesAndSystemsPlaceholder": "- 決済APIのパフォーマンス改善\n- 不正検出機能の追加\n- 新しいデータベースへの移行",
+        "servicesAndSystemsHelp": "1行に1項目",
+        "waysOfWorking": "作業方法",
+        "waysOfWorkingPlaceholder": "- モブプログラミングセッションの導入\n- テストカバレッジの改善\n- トランクベース開発の採用",
+        "waysOfWorkingHelp": "チームプロセスの改善 - 1行に1項目",
+        "widerImprovements": "組織横断的な改善",
+        "widerImprovementsPlaceholder": "- プラットフォーム標準の確立\n- デプロイメントガイドラインの作成\n- アーキテクチャギルドの組織化",
+        "widerImprovementsHelp": "チーム横断的な取り組み - 1行に1項目"
+      },
+      "interactions": {
+        "current": "現在インタラクションのあるチーム",
+        "planned": "近日中にインタラクション予定のチーム",
+        "selectTeam": "チームを選択...",
+        "purposePlaceholder": "目的（例: API統合、知識共有）",
+        "durationPlaceholder": "期間（例: 継続中、3ヶ月、Q2まで）",
+        "purposePlaceholderShort": "目的",
+        "durationPlaceholderShort": "期間",
+        "noCurrent": "現在のインタラクションが定義されていません",
+        "noPlanned": "計画中のインタラクションが定義されていません"
+      }
+    },
+    "cognitiveLoad": {
+      "title": "認知負荷の評価",
+      "description": "3つの側面からチームの認知負荷を評価します",
+      "domain": "ドメイン複雑性",
+      "domainHelp": "必要なビジネスドメイン知識",
+      "technical": "技術複雑性",
+      "technicalHelp": "必要な技術スキルとテクノロジー",
+      "scope": "責任範囲",
+      "scopeHelp": "所有するシステムとサービスの広さ",
+      "total": "総合認知負荷",
+      "highLoadWarning": "⚠️ 高い認知負荷が検出されました",
+      "suggestions": "検討事項:",
+      "suggestion1": "チームの責任範囲を削減",
+      "suggestion2": "複数のチームに分割",
+      "suggestion3": "イネーブリングチームのサポートを追加"
+    },
+    "interaction": {
+      "title": "インタラクションのプロパティ",
+      "mode": "インタラクションモード",
+      "label": "ラベル",
+      "labelPlaceholder": "オプションのラベル",
+      "description": "説明",
+      "descriptionPlaceholder": "このインタラクションを説明..."
+    }
+  },
+  "import": {
+    "title": "トポロジーのインポート",
+    "mode": "インポートモード",
+    "replace": "置換",
+    "replaceDesc": "すべての既存チームとインタラクションを削除",
+    "merge": "マージ",
+    "mergeDesc": "既存データを保持し、インポートしたデータを追加",
+    "selectFile": "ファイルを選択",
+    "importing": "インポート中...",
+    "success": "インポート成功",
+    "errors": "エラー:",
+    "warnings": "警告:",
+    "validating": "データを検証中..."
+  },
+  "canvas": {
+    "clickToSelect": "クリックして選択",
+    "dragToMove": "ドラッグして移動",
+    "deleteSelected": "Deleteキーで削除"
+  },
+  "keyboard": {
+    "shortcuts": "キーボードショートカット",
+    "delete": "選択中のチーム/インタラクションを削除",
+    "escape": "選択解除",
+    "save": "トポロジーをJSONで保存",
+    "new": "新規トポロジーを作成"
+  }
+}

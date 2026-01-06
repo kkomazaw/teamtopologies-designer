@@ -1,0 +1,192 @@
+{
+  "common": {
+    "add": "Add",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "clear": "Clear",
+    "search": "Search",
+    "filter": "Filter",
+    "new": "New",
+    "export": "Export",
+    "import": "Import",
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning"
+  },
+  "header": {
+    "title": "Team Topologies Designer",
+    "export": "Export",
+    "exportJson": "Export as JSON",
+    "exportYaml": "Export as YAML",
+    "exportCsv": "Export as CSV (ZIP)",
+    "import": "Import",
+    "importJson": "Import from JSON/YAML",
+    "importCsv": "Import from CSV (ZIP)",
+    "newTopology": "New Topology"
+  },
+  "sidebar": {
+    "teamTypes": "Team Types",
+    "searchAndFilter": "Search & Filter",
+    "teams": "Teams",
+    "teamsCount": "{count} team(s)",
+    "dragToCanvas": "Drag to canvas to create",
+    "clearFilters": "Clear Filters",
+    "searchPlaceholder": "Search teams...",
+    "filterByType": "Type",
+    "filterByTag": "Tag",
+    "selectTag": "Select tag..."
+  },
+  "teamTypes": {
+    "streamAligned": "Stream-Aligned Team",
+    "enabling": "Enabling Team",
+    "complicatedSubsystem": "Complicated-Subsystem Team",
+    "platform": "Platform Team",
+    "streamAlignedDesc": "Aligned to a flow of work from a segment of the business domain",
+    "enablingDesc": "Helps a Stream-aligned team to overcome obstacles and discover gaps in existing capability",
+    "complicatedSubsystemDesc": "Where significant mathematics/calculation/technical expertise is required",
+    "platformDesc": "A grouping of other teams providing a compelling internal product"
+  },
+  "interactionModes": {
+    "collaboration": "Collaboration",
+    "xAsAService": "X-as-a-Service",
+    "facilitating": "Facilitating",
+    "collaborationDesc": "Two teams working together for a defined period of time to discover new patterns, approaches, and limitations",
+    "xAsAServiceDesc": "One team consumes something provided by another team (such as an API, a tool, or a full software product)",
+    "facilitatingDesc": "One team (usually an Enabling team) facilitates another team in learning or adopting new approaches"
+  },
+  "properties": {
+    "tabs": {
+      "basicInfo": "Basic Info",
+      "teamApi": "Team API",
+      "cognitiveLoad": "Cognitive Load"
+    },
+    "basicInfo": {
+      "teamName": "Team Name",
+      "teamType": "Team Type",
+      "description": "Description",
+      "memberCount": "Member Count",
+      "techStack": "Tech Stack",
+      "techStackPlaceholder": "React, Node.js, PostgreSQL",
+      "techStackHelp": "Comma-separated list",
+      "responsibilities": "Responsibilities",
+      "responsibilitiesPlaceholder": "User authentication, Payment processing",
+      "responsibilitiesHelp": "One per line",
+      "tags": "Tags",
+      "tagsPlaceholder": "frontend, backend, api",
+      "tagsHelp": "Comma-separated list"
+    },
+    "teamApi": {
+      "templateReference": "Based on the official {link} by Team Topologies",
+      "templateLinkText": "Team API template",
+      "tabs": {
+        "basic": "Basic Info",
+        "work": "Current Work",
+        "interactions": "Interactions"
+      },
+      "basic": {
+        "focus": "Team Focus",
+        "focusPlaceholder": "e.g., Payment processing, User authentication",
+        "partOfPlatform": "Part of a Platform?",
+        "partOfPlatformYes": "Yes, this team is part of a platform",
+        "platformDetails": "Platform details...",
+        "providesService": "Provides Service to Other Teams?",
+        "providesServiceYes": "Yes, we provide services to other teams",
+        "serviceDetails": "Service details...",
+        "serviceLevelExpectations": "Service Level Expectations",
+        "slaPlaceholder": "e.g., 99.9% uptime, < 200ms response time",
+        "softwareOwned": "Software Owned & Evolved",
+        "softwareOwnedPlaceholder": "payment-service, billing-api, user-db",
+        "softwareOwnedHelp": "Comma-separated list",
+        "versioningApproaches": "Versioning Approaches",
+        "versioningPlaceholder": "e.g., Semantic versioning, Git flow",
+        "wikiSearchTerms": "Wiki Search Terms",
+        "wikiSearchTermsPlaceholder": "payments, billing, checkout",
+        "wikiSearchTermsHelp": "Keywords for finding team info in wiki",
+        "chatChannels": "Chat Tool Channels",
+        "chatChannelsPlaceholder": "#team-payments, #platform-team, #ops-alerts",
+        "chatChannelsHelp": "Comma-separated channel names",
+        "dailySyncTime": "Time of Daily Sync Meeting",
+        "dailySyncTimePlaceholder": "e.g., 10:00 UTC, 9:30 JST"
+      },
+      "work": {
+        "description": "What we're currently working on",
+        "servicesAndSystems": "Our Services and Systems",
+        "servicesAndSystemsPlaceholder": "- Improving payment API performance\n- Adding fraud detection\n- Migrating to new database",
+        "servicesAndSystemsHelp": "One item per line",
+        "waysOfWorking": "Ways of Working",
+        "waysOfWorkingPlaceholder": "- Implementing mob programming sessions\n- Improving test coverage\n- Adopting trunk-based development",
+        "waysOfWorkingHelp": "Team process improvements - one per line",
+        "widerImprovements": "Wider Cross-Team or Organisational Improvements",
+        "widerImprovementsPlaceholder": "- Establishing platform standards\n- Creating deployment guidelines\n- Organizing architecture guild",
+        "widerImprovementsHelp": "Cross-team initiatives - one per line"
+      },
+      "interactions": {
+        "current": "Teams We Currently Interact With",
+        "planned": "Teams We Expect to Interact With Soon",
+        "selectTeam": "Select team...",
+        "purposePlaceholder": "Purpose (e.g., API integration, knowledge sharing)",
+        "durationPlaceholder": "Duration (e.g., ongoing, 3 months, until Q2)",
+        "purposePlaceholderShort": "Purpose",
+        "durationPlaceholderShort": "Duration",
+        "noCurrent": "No current interactions defined",
+        "noPlanned": "No planned interactions defined"
+      }
+    },
+    "cognitiveLoad": {
+      "title": "Cognitive Load Assessment",
+      "description": "Evaluate the team's cognitive load across three dimensions",
+      "domain": "Domain Complexity",
+      "domainHelp": "Business domain knowledge required",
+      "technical": "Technical Complexity",
+      "technicalHelp": "Technical skills and technologies required",
+      "scope": "Scope of Responsibility",
+      "scopeHelp": "Breadth of systems and services owned",
+      "total": "Total Cognitive Load",
+      "highLoadWarning": "⚠️ High cognitive load detected",
+      "suggestions": "Consider:",
+      "suggestion1": "Reducing team responsibilities",
+      "suggestion2": "Splitting into multiple teams",
+      "suggestion3": "Adding enabling team support"
+    },
+    "interaction": {
+      "title": "Interaction Properties",
+      "mode": "Interaction Mode",
+      "label": "Label",
+      "labelPlaceholder": "Optional label",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe this interaction..."
+    }
+  },
+  "import": {
+    "title": "Import Topology",
+    "mode": "Import Mode",
+    "replace": "Replace",
+    "replaceDesc": "Delete all existing teams and interactions",
+    "merge": "Merge",
+    "mergeDesc": "Keep existing data and add imported data",
+    "selectFile": "Select File",
+    "importing": "Importing...",
+    "success": "Import successful",
+    "errors": "Errors:",
+    "warnings": "Warnings:",
+    "validating": "Validating data..."
+  },
+  "canvas": {
+    "clickToSelect": "Click to select",
+    "dragToMove": "Drag to move",
+    "deleteSelected": "Press Delete to remove"
+  },
+  "keyboard": {
+    "shortcuts": "Keyboard Shortcuts",
+    "delete": "Delete selected team/interaction",
+    "escape": "Deselect",
+    "save": "Save topology as JSON",
+    "new": "Create new topology"
+  }
+}

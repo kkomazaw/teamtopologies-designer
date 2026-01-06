@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useTopologyStore } from '@/store/topology-store';
 import { exportAsJSON, exportAsYAML, exportAsCSV } from '@/lib/export';
 import { ImportModal } from '@/components/modals/import-modal';
+import { LanguageSwitcher } from '@/components/language-switcher';
 
 export function Header() {
+  const t = useTranslations('header');
   const { getTopology, resetTopology, loadTopology, metadata } = useTopologyStore();
   const [showExportMenu, setShowExportMenu] = useState(false);
   const [showImportMenu, setShowImportMenu] = useState(false);
@@ -78,16 +81,18 @@ export function Header() {
   return (
     <header className="flex items-center justify-between px-4 py-2 border-b bg-white relative">
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-bold">Team Topologies Designer</h1>
+        <h1 className="text-lg font-bold">{t('title')}</h1>
         <span className="text-sm text-gray-500">{metadata.name}</span>
       </div>
 
       <div className="flex items-center gap-2">
+        <LanguageSwitcher />
+
         <button
           onClick={handleNew}
           className="px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded"
         >
-          New
+          {t('newTopology')}
         </button>
 
         {/* Import dropdown */}
@@ -96,7 +101,7 @@ export function Header() {
             onClick={() => setShowImportMenu(!showImportMenu)}
             className="px-3 py-1.5 text-sm bg-gray-100 hover:bg-gray-200 rounded"
           >
-            Import ▾
+            {t('import')} ▾
           </button>
 
           {showImportMenu && (
@@ -105,13 +110,13 @@ export function Header() {
                 onClick={handleImportJSONYAML}
                 className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
               >
-                Import from JSON/YAML
+                {t('importJson')}
               </button>
               <button
                 onClick={handleImportCSV}
                 className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
               >
-                Import from CSV (ZIP)
+                {t('importCsv')}
               </button>
             </div>
           )}
@@ -123,7 +128,7 @@ export function Header() {
             onClick={() => setShowExportMenu(!showExportMenu)}
             className="px-3 py-1.5 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded"
           >
-            Export ▾
+            {t('export')} ▾
           </button>
 
           {showExportMenu && (
@@ -132,19 +137,19 @@ export function Header() {
                 onClick={handleExportJSON}
                 className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
               >
-                Export as JSON
+                {t('exportJson')}
               </button>
               <button
                 onClick={handleExportYAML}
                 className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
               >
-                Export as YAML
+                {t('exportYaml')}
               </button>
               <button
                 onClick={handleExportCSV}
                 className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
               >
-                Export as CSV (ZIP)
+                {t('exportCsv')}
               </button>
             </div>
           )}
