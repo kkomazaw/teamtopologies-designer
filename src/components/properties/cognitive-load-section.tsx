@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useTopologyStore } from '@/store/topology-store';
 import { COGNITIVE_LOAD_SCALE } from '@/lib/constants';
 
@@ -8,6 +9,7 @@ interface CognitiveLoadSectionProps {
 }
 
 export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
+  const t = useTranslations('cognitiveLoad');
   const { getTeamById, updateTeam } = useTopologyStore();
   const team = getTeamById(teamId);
 
@@ -30,11 +32,11 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
 
   const getLoadLevel = (value: number): { label: string; color: string } => {
     if (value <= COGNITIVE_LOAD_SCALE.LOW_THRESHOLD) {
-      return { label: 'Low', color: 'text-green-600' };
+      return { label: t('levels.low'), color: 'text-green-600' };
     } else if (value >= COGNITIVE_LOAD_SCALE.HIGH_THRESHOLD) {
-      return { label: 'High', color: 'text-red-600' };
+      return { label: t('levels.high'), color: 'text-red-600' };
     } else {
-      return { label: 'Medium', color: 'text-yellow-600' };
+      return { label: t('levels.medium'), color: 'text-yellow-600' };
     }
   };
 
@@ -46,14 +48,13 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
     <div className="space-y-6">
       <div>
         <p className="text-sm text-gray-600 mb-4">
-          Cognitive load indicates the mental effort required to work in this team.
-          Team Topologies recommends keeping cognitive load manageable to maintain team effectiveness.
+          {t('description')}
         </p>
 
         {/* Overall Score */}
         <div className="p-4 bg-gray-50 rounded-lg mb-4">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium">Overall Cognitive Load</span>
+            <span className="text-sm font-medium">{t('overall')}</span>
             <span className={`text-lg font-bold ${overallLevel.color}`}>
               {averageLoad.toFixed(1)}/10 - {overallLevel.label}
             </span>
@@ -64,7 +65,7 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
       {/* Domain Complexity */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-medium">Domain Complexity</label>
+          <label className="text-sm font-medium">{t('domain.label')}</label>
           <span className={`text-sm font-semibold ${getLoadLevel(cognitiveLoad.domain).color}`}>
             {cognitiveLoad.domain}/10
           </span>
@@ -78,14 +79,14 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
           className="w-full"
         />
         <p className="text-xs text-gray-500 mt-1">
-          How complex is the business domain this team works in?
+          {t('domain.hint')}
         </p>
       </div>
 
       {/* Technical Complexity */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-medium">Technical Complexity</label>
+          <label className="text-sm font-medium">{t('technical.label')}</label>
           <span className={`text-sm font-semibold ${getLoadLevel(cognitiveLoad.technical).color}`}>
             {cognitiveLoad.technical}/10
           </span>
@@ -99,14 +100,14 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
           className="w-full"
         />
         <p className="text-xs text-gray-500 mt-1">
-          How technically challenging is the work?
+          {t('technical.hint')}
         </p>
       </div>
 
       {/* Scope */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-medium">Breadth of Responsibility</label>
+          <label className="text-sm font-medium">{t('scope.label')}</label>
           <span className={`text-sm font-semibold ${getLoadLevel(cognitiveLoad.scope).color}`}>
             {cognitiveLoad.scope}/10
           </span>
@@ -120,7 +121,7 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
           className="w-full"
         />
         <p className="text-xs text-gray-500 mt-1">
-          How broad is the scope of the team's responsibilities?
+          {t('scope.hint')}
         </p>
       </div>
 
@@ -128,13 +129,13 @@ export function CognitiveLoadSection({ teamId }: CognitiveLoadSectionProps) {
       {averageLoad >= COGNITIVE_LOAD_SCALE.HIGH_THRESHOLD && (
         <div className="p-3 bg-red-50 border border-red-200 rounded">
           <p className="text-sm text-red-800">
-            <strong>Warning:</strong> High cognitive load detected. Consider:
+            <strong>{t('warning.title')}:</strong> {t('warning.message')}
           </p>
           <ul className="text-xs text-red-700 mt-2 ml-4 list-disc space-y-1">
-            <li>Splitting the team or reducing scope</li>
-            <li>Adding an Enabling Team to help</li>
-            <li>Simplifying technical architecture</li>
-            <li>Offloading work to a Platform Team</li>
+            <li>{t('warning.recommendations.splitTeam')}</li>
+            <li>{t('warning.recommendations.addEnablingTeam')}</li>
+            <li>{t('warning.recommendations.simplifyArchitecture')}</li>
+            <li>{t('warning.recommendations.offloadToPlatform')}</li>
           </ul>
         </div>
       )}

@@ -1,10 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useTopologyStore } from '@/store/topology-store';
 import { TeamProperties } from './team-properties';
 import { InteractionProperties } from './interaction-properties';
 
 export function PropertiesPanel() {
+  const t = useTranslations('properties');
   const { selectedTeamId, selectedInteractionId, selectTeam, selectInteraction } =
     useTopologyStore();
 
@@ -23,7 +25,7 @@ export function PropertiesPanel() {
     <aside className="w-80 border-l bg-white overflow-y-auto">
       <div className="sticky top-0 bg-white border-b px-4 py-3 flex items-center justify-between">
         <h2 className="font-semibold">
-          {selectedTeamId ? 'Team Properties' : 'Interaction Properties'}
+          {selectedTeamId ? t('teamProperties') : t('interactionProperties')}
         </h2>
         <button
           onClick={handleClose}

@@ -5,6 +5,28 @@
  * based on the Team Topologies framework.
  */
 
+// Localized string support for multilingual input
+export interface LocalizedString {
+  en: string;
+  ja: string;
+}
+
+// Helper type: can be either a simple string (legacy) or localized
+export type MaybeLocalized = string | LocalizedString;
+
+// Type guard to check if a value is localized
+export function isLocalizedString(value: MaybeLocalized): value is LocalizedString {
+  return typeof value === 'object' && value !== null && 'en' in value && 'ja' in value;
+}
+
+// Helper to get localized value or fallback to string
+export function getLocalizedValue(value: MaybeLocalized, locale: 'en' | 'ja'): string {
+  if (isLocalizedString(value)) {
+    return value[locale] || value.en || value.ja || '';
+  }
+  return value || '';
+}
+
 // Team Types as defined in Team Topologies
 export type TeamType =
   | 'stream-aligned'

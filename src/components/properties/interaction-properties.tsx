@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useTopologyStore } from '@/store/topology-store';
 import { INTERACTION_MODES } from '@/lib/constants';
 import { InteractionMode } from '@/types/team';
@@ -10,6 +11,8 @@ interface InteractionPropertiesProps {
 }
 
 export function InteractionProperties({ interactionId }: InteractionPropertiesProps) {
+  const t = useTranslations('interactions');
+  const tModes = useTranslations('interactionModes');
   const { getInteractionById, updateInteraction, deleteInteraction, getTeamById } =
     useTopologyStore();
   const interaction = getInteractionById(interactionId);
@@ -25,7 +28,7 @@ export function InteractionProperties({ interactionId }: InteractionPropertiesPr
   }, [interaction]);
 
   if (!interaction) {
-    return <div className="p-4 text-gray-500">Interaction not found</div>;
+    return <div className="p-4 text-gray-500">{t('notFound')}</div>;
   }
 
   const sourceTeam = getTeamById(interaction.sourceTeamId);
@@ -43,7 +46,7 @@ export function InteractionProperties({ interactionId }: InteractionPropertiesPr
   };
 
   const handleDelete = () => {
-    if (confirm('Are you sure you want to delete this interaction?')) {
+    if (confirm(t('deleteConfirm'))) {
       deleteInteraction(interactionId);
     }
   };
@@ -54,22 +57,22 @@ export function InteractionProperties({ interactionId }: InteractionPropertiesPr
     <div className="p-4 space-y-6">
       {/* Teams Info */}
       <div>
-        <h3 className="text-sm font-semibold mb-2">Teams</h3>
+        <h3 className="text-sm font-semibold mb-2">{t('teams')}</h3>
         <div className="space-y-2 text-sm">
           <div>
-            <span className="text-gray-600">Source:</span>{' '}
-            <span className="font-medium">{sourceTeam?.name || 'Unknown'}</span>
+            <span className="text-gray-600">{t('source')}:</span>{' '}
+            <span className="font-medium">{sourceTeam?.name || t('unknown')}</span>
           </div>
           <div>
-            <span className="text-gray-600">Target:</span>{' '}
-            <span className="font-medium">{targetTeam?.name || 'Unknown'}</span>
+            <span className="text-gray-600">{t('target')}:</span>{' '}
+            <span className="font-medium">{targetTeam?.name || t('unknown')}</span>
           </div>
         </div>
       </div>
 
       {/* Interaction Mode */}
       <div>
-        <label className="block text-sm font-medium mb-2">Interaction Mode</label>
+        <label className="block text-sm font-medium mb-2">{t('interactionMode')}</label>
         <div className="space-y-2">
           {Object.values(INTERACTION_MODES).map((mode) => (
             <button
@@ -94,9 +97,9 @@ export function InteractionProperties({ interactionId }: InteractionPropertiesPr
                     borderColor: mode.color,
                   }}
                 />
-                <span className="font-medium text-sm">{mode.label}</span>
+                <span className="font-medium text-sm">{tModes(mode.mode)}</span>
               </div>
-              <p className="text-xs text-gray-600">{mode.description}</p>
+              <p className="text-xs text-gray-600">{tModes(`${mode.mode}Desc`)}</p>
             </button>
           ))}
         </div>
@@ -104,27 +107,27 @@ export function InteractionProperties({ interactionId }: InteractionPropertiesPr
 
       {/* Label */}
       <div>
-        <label className="block text-sm font-medium mb-1">Label</label>
+        <label className="block text-sm font-medium mb-1">{t('label')}</label>
         <input
           type="text"
           value={label}
           onChange={(e) => setLabel(e.target.value)}
           onBlur={handleSave}
-          placeholder="e.g., Auth, Payment API"
+          placeholder={t('labelPlaceholder')}
           className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <p className="text-xs text-gray-500 mt-1">Short label shown on the edge</p>
+        <p className="text-xs text-gray-500 mt-1">{t('labelHint')}</p>
       </div>
 
       {/* Description */}
       <div>
-        <label className="block text-sm font-medium mb-1">Description</label>
+        <label className="block text-sm font-medium mb-1">{t('description')}</label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           onBlur={handleSave}
           rows={3}
-          placeholder="Describe the interaction..."
+          placeholder={t('descriptionPlaceholder')}
           className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
@@ -135,7 +138,7 @@ export function InteractionProperties({ interactionId }: InteractionPropertiesPr
           onClick={handleDelete}
           className="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
         >
-          Delete Interaction
+          {t('deleteInteraction')}
         </button>
       </div>
     </div>

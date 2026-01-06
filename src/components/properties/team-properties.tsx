@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { useTopologyStore } from '@/store/topology-store';
 import { TEAM_TYPES } from '@/lib/constants';
 import { TeamType } from '@/types/team';
@@ -12,6 +13,8 @@ interface TeamPropertiesProps {
 }
 
 export function TeamProperties({ teamId }: TeamPropertiesProps) {
+  const t = useTranslations('properties');
+  const tTypes = useTranslations('teamTypes');
   const { getTeamById, updateTeam, deleteTeam } = useTopologyStore();
   const team = getTeamById(teamId);
 
@@ -35,7 +38,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
   }, [team]);
 
   if (!team) {
-    return <div className="p-4 text-gray-500">Team not found</div>;
+    return <div className="p-4 text-gray-500">{t('teamNotFound')}</div>;
   }
 
   const handleSave = () => {
@@ -50,7 +53,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
   };
 
   const handleDelete = () => {
-    if (confirm(`Are you sure you want to delete "${team.name}"?`)) {
+    if (confirm(t('deleteConfirm', { name: team.name }))) {
       deleteTeam(teamId);
     }
   };
@@ -73,7 +76,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
               : 'border-transparent text-gray-500 hover:text-gray-700'
           }`}
         >
-          Basic Info
+          {t('tabs.basicInfo')}
         </button>
         <button
           onClick={() => setActiveTab('team-api')}
@@ -83,7 +86,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
               : 'border-transparent text-gray-500 hover:text-gray-700'
           }`}
         >
-          Team API
+          {t('tabs.teamApi')}
         </button>
         <button
           onClick={() => setActiveTab('cognitive-load')}
@@ -93,7 +96,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
               : 'border-transparent text-gray-500 hover:text-gray-700'
           }`}
         >
-          Cognitive Load
+          {t('tabs.cognitiveLoad')}
         </button>
       </div>
 
@@ -102,7 +105,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
         <div className="space-y-6">
           {/* Team Type */}
           <div>
-            <label className="block text-sm font-medium mb-2">Team Type</label>
+            <label className="block text-sm font-medium mb-2">{t('teamType')}</label>
             <div className="space-y-2">
               {Object.values(TEAM_TYPES).map((type) => (
                 <button
@@ -123,7 +126,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
                       className="w-3 h-3 rounded"
                       style={{ backgroundColor: type.color }}
                     />
-                    <span className="text-sm font-medium">{type.label}</span>
+                    <span className="text-sm font-medium">{tTypes(type.type)}</span>
                   </div>
                 </button>
               ))}
@@ -132,7 +135,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
 
           {/* Basic Info */}
           <div>
-            <label className="block text-sm font-medium mb-1">Team Name</label>
+            <label className="block text-sm font-medium mb-1">{t('teamName')}</label>
             <input
               type="text"
               value={name}
@@ -143,7 +146,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
+            <label className="block text-sm font-medium mb-1">{t('description')}</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -154,7 +157,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Member Count</label>
+            <label className="block text-sm font-medium mb-1">{t('memberCount')}</label>
             <input
               type="number"
               value={memberCount}
@@ -164,47 +167,47 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
               max="20"
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <p className="text-xs text-gray-500 mt-1">Recommended: 5-9 members</p>
+            <p className="text-xs text-gray-500 mt-1">{t('memberCountHint')}</p>
           </div>
 
           {/* Organization Info */}
           <div>
-            <label className="block text-sm font-medium mb-1">Tech Stack</label>
+            <label className="block text-sm font-medium mb-1">{t('techStack')}</label>
             <input
               type="text"
               value={techStack}
               onChange={(e) => setTechStack(e.target.value)}
               onBlur={handleSave}
-              placeholder="TypeScript, React, Node.js"
+              placeholder={t('techStackPlaceholder')}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <p className="text-xs text-gray-500 mt-1">Comma-separated values</p>
+            <p className="text-xs text-gray-500 mt-1">{t('commaSeparatedHint')}</p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Responsibilities</label>
+            <label className="block text-sm font-medium mb-1">{t('responsibilities')}</label>
             <input
               type="text"
               value={responsibilities}
               onChange={(e) => setResponsibilities(e.target.value)}
               onBlur={handleSave}
-              placeholder="Payment API, Billing System"
+              placeholder={t('responsibilitiesPlaceholder')}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <p className="text-xs text-gray-500 mt-1">Comma-separated values</p>
+            <p className="text-xs text-gray-500 mt-1">{t('commaSeparatedHint')}</p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Tags</label>
+            <label className="block text-sm font-medium mb-1">{t('tags')}</label>
             <input
               type="text"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               onBlur={handleSave}
-              placeholder="critical, customer-facing"
+              placeholder={t('tagsPlaceholder')}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <p className="text-xs text-gray-500 mt-1">Comma-separated values</p>
+            <p className="text-xs text-gray-500 mt-1">{t('commaSeparatedHint')}</p>
           </div>
 
           {/* Actions */}
@@ -213,7 +216,7 @@ export function TeamProperties({ teamId }: TeamPropertiesProps) {
               onClick={handleDelete}
               className="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
             >
-              Delete Team
+              {t('deleteTeam')}
             </button>
           </div>
         </div>

@@ -1,11 +1,14 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { TEAM_TYPES } from '@/lib/constants';
 import { TeamType } from '@/types/team';
 import { useTopologyStore } from '@/store/topology-store';
 
 export function Sidebar() {
+  const t = useTranslations('sidebar');
+  const tTypes = useTranslations('teamTypes');
   const teamTypes = Object.values(TEAM_TYPES);
   const { teams, selectTeam, setFilteredTeamIds } = useTopologyStore();
 
@@ -90,7 +93,8 @@ export function Sidebar() {
       <div className="p-4 space-y-6 flex-1">
         {/* Team Types Section */}
         <div>
-          <h2 className="text-sm font-semibold mb-3 text-gray-700">Team Types</h2>
+          <h2 className="text-sm font-semibold mb-3 text-gray-700">{t('teamTypes')}</h2>
+          <p className="text-xs text-gray-500 mb-3">{t('dragToCanvas')}</p>
           <div className="space-y-2">
             {teamTypes.map((teamType) => (
               <div
@@ -108,9 +112,9 @@ export function Sidebar() {
                     className="w-4 h-4 rounded"
                     style={{ backgroundColor: teamType.color }}
                   />
-                  <span className="font-medium text-sm">{teamType.label}</span>
+                  <span className="font-medium text-sm">{tTypes(teamType.type)}</span>
                 </div>
-                <p className="text-xs text-gray-600">{teamType.description}</p>
+                <p className="text-xs text-gray-600">{tTypes(`${teamType.type}Desc`)}</p>
               </div>
             ))}
           </div>
@@ -120,14 +124,14 @@ export function Sidebar() {
         {teams.length > 0 && (
           <div className="space-y-3">
             <h2 className="text-sm font-semibold text-gray-700">
-              Search & Filter
+              {t('searchAndFilter')}
             </h2>
 
             {/* Search input */}
             <div>
               <input
                 type="text"
-                placeholder="Search teams..."
+                placeholder={t('searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-3 py-2 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -136,7 +140,7 @@ export function Sidebar() {
 
             {/* Type filters */}
             <div>
-              <p className="text-xs font-medium text-gray-600 mb-2">Type</p>
+              <p className="text-xs font-medium text-gray-600 mb-2">{t('filterByType')}</p>
               <div className="space-y-1">
                 {teamTypes.map((teamType) => (
                   <label
@@ -153,7 +157,7 @@ export function Sidebar() {
                       className="w-2.5 h-2.5 rounded"
                       style={{ backgroundColor: teamType.color }}
                     />
-                    <span className="text-xs">{teamType.label}</span>
+                    <span className="text-xs">{tTypes(teamType.type)}</span>
                   </label>
                 ))}
               </div>
@@ -162,13 +166,13 @@ export function Sidebar() {
             {/* Tag filter */}
             {allTags.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-gray-600 mb-2">Tag</p>
+                <p className="text-xs font-medium text-gray-600 mb-2">{t('filterByTag')}</p>
                 <select
                   value={selectedTagFilter}
                   onChange={(e) => setSelectedTagFilter(e.target.value)}
                   className="w-full px-2 py-1.5 text-xs border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="">All tags</option>
+                  <option value="">{t('selectTag')}</option>
                   {allTags.map((tag) => (
                     <option key={tag} value={tag}>
                       {tag}
@@ -188,7 +192,7 @@ export function Sidebar() {
                 }}
                 className="w-full px-3 py-1.5 text-xs bg-gray-200 hover:bg-gray-300 rounded"
               >
-                Clear Filters
+                {t('clearFilters')}
               </button>
             )}
           </div>
@@ -198,7 +202,7 @@ export function Sidebar() {
         {teams.length > 0 && (
           <div>
             <h2 className="text-sm font-semibold mb-3 text-gray-700">
-              Teams ({filteredTeams.length}/{teams.length})
+              {t('teams')} ({filteredTeams.length}/{teams.length})
             </h2>
             <div className="space-y-1">
               {filteredTeams.length > 0 ? (
@@ -220,22 +224,12 @@ export function Sidebar() {
                 })
               ) : (
                 <p className="text-xs text-gray-400 text-center py-4">
-                  No teams match the current filters
+                  {t('teamsCount', { count: 0 })}
                 </p>
               )}
             </div>
           </div>
         )}
-
-        {/* Instructions */}
-        <div className="text-xs text-gray-500 space-y-2">
-          <p>
-            <strong>Drag & Drop:</strong> Drag a team type onto the canvas to create a new team
-          </p>
-          <p>
-            <strong>Connect Teams:</strong> Click and drag from one team to another to create an interaction
-          </p>
-        </div>
       </div>
     </aside>
   );
