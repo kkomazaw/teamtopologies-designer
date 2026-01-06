@@ -18,18 +18,73 @@ export type InteractionMode =
   | 'x-as-a-service'
   | 'facilitating';
 
-// Service provided by a team (Team API)
+// Team Interaction - based on official Team API template
+// Represents how this team interacts with another team
+export interface TeamInteraction {
+  id: string;
+  teamId: string; // Reference to the other team
+  interactionMode: InteractionMode;
+  purpose: string;
+  duration?: string; // e.g., "ongoing", "3 months", "until Q2"
+}
+
+// Current work - based on official Team API template
+export interface CurrentWork {
+  servicesAndSystems: string[]; // What services/systems the team is working on
+  waysOfWorking: string[]; // Improvements to how the team works
+  widerImprovements: string[]; // Cross-team or organizational improvements
+}
+
+// Team API information - based on official Team API template
+// See: https://github.com/TeamTopologies/Team-API-template
+export interface TeamAPI {
+  // Basic information
+  focus?: string; // Team's focus area
+
+  // Platform and service details
+  partOfPlatform: {
+    isPart: boolean;
+    details?: string;
+  };
+
+  providesServiceToOtherTeams: {
+    provides: boolean;
+    details?: string;
+  };
+
+  serviceLevelExpectations?: string;
+
+  // Software and versioning
+  softwareOwned: string[]; // Software owned and evolved by this team
+  versioningApproaches?: string;
+
+  // Communication and collaboration
+  wikiSearchTerms: string[]; // Keywords for finding team info
+  chatChannels: string[]; // e.g., #team-payments, #platform-team
+  dailySyncTime?: string; // e.g., "10:00 UTC", "9:30 JST"
+
+  // Current work
+  currentWork: CurrentWork;
+
+  // Team interactions
+  currentInteractions: TeamInteraction[]; // Teams we currently interact with
+  plannedInteractions: TeamInteraction[]; // Teams we expect to interact with soon
+}
+
+// Legacy types - kept for backward compatibility
+// These will be migrated to the new TeamAPI structure
+/** @deprecated Use TeamAPI.softwareOwned instead */
 export interface Service {
   id: string;
   name: string;
   description?: string;
   version?: string;
   endpoint?: string;
-  slo?: string; // Service Level Objective
-  sli?: string; // Service Level Indicator
+  slo?: string;
+  sli?: string;
 }
 
-// Dependency on another team's service
+/** @deprecated Use TeamInteraction instead */
 export interface Dependency {
   id: string;
   providerTeamId: string;
@@ -38,25 +93,13 @@ export interface Dependency {
   criticality?: 'low' | 'medium' | 'high' | 'critical';
 }
 
-// Repository managed by a team
+/** @deprecated Use TeamAPI.softwareOwned instead */
 export interface Repository {
   id: string;
   name: string;
   url?: string;
   description?: string;
   primaryLanguage?: string;
-}
-
-// Team API information
-export interface TeamAPI {
-  codeRepositories: Repository[];
-  providedServices: Service[];
-  dependencies: Dependency[];
-  versioning?: string;
-  performance?: {
-    slo?: string;
-    sli?: string;
-  };
 }
 
 // Cognitive Load indicators (optional)
